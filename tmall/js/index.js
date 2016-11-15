@@ -1,0 +1,296 @@
+$(document).ready(function(){
+	var slideShow=$(".slideShow"),
+	slidepannel=$(".slide-pannel"),
+	nav=$(".nav").find("span"),
+	iNow=0,
+	timer=null,
+	mytaobao=$(".snMytaobao"),
+	myfavorite=$(".snFavorite"),
+	seller=$(".snSeller"),
+	mybrand=$(".sn-mybrand"),
+	cart=$(".sn-cart"),
+	home=$(".sn-home"),
+	bussiness=$(".sn-b"),
+	mobile=$(".sn-mobile"),
+	snNav=$(".snNav"),
+	secondMenu1=$("#second-menu-1"),
+	secondMenu2=$("#second-menu-2"),
+	secondMenu4=$("#second-menu-4"),
+	secondMenu3=$("#second-menu-3"),
+	secondMenu5=$("#second-menu-5"),
+	secondMenu6=$("#second-menu-6"),
+	secondMenu7=$("#second-menu-7"),
+	goodsClass=$(".goods-class"),
+	party=$(".double-11-party"),
+	secondItem=secondMenu6.find("li"),
+	brandItem=$(".brand-item"),
+	iNow=0,
+	iNow2=0,
+	leftMask=$(".left-mask"),
+	leftTab=leftMask.find(".left-tab"),
+	attachedSearch=$(".attached-search-wrap"),
+	rightMask=$(".right-mask"),
+	rightTab2=$(".right-tab-2"),
+	rightTab3=$(".right-tab-3"),
+	rightTab4=$(".right-tab-4"),
+	rightTab5=$(".right-tab-5"),
+	rightTab6=$(".right-tab-6"),
+	rightTab7=$(".right-tab-7"),
+	rightTab8=$(".right-tab-8"),
+	rightTab9=$(".right-tab-9"),
+	rightTabBg2=$(".right-tab-bg-2"),
+	rightTabBg3=$(".right-tab-bg-3"),
+	rightTabBg4=$(".right-tab-bg-4"),
+	rightTabBg5=$(".right-tab-bg-5"),
+	rightTabBg6=$(".right-tab-bg-6"),
+	rightTabBg7=$(".right-tab-bg-7"),
+	rightTabBg8=$(".right-tab-bg-8"),
+	rightTabBg9=$(".right-tab-bg-9"),
+	channelItem=$(".channel-item"),
+	leftGrid=$(".floor-con-body").find(".grid"),
+	rightGrid=$(".floor-con-body").find(".right-grid");
+//module-body处鼠标触碰图片，图片会变大
+	channelItem.hover(function(){
+		$(this).find("img").css("width","140px");
+	},function(){
+		$(this).find("img").css("width","133px");
+	});
+//floor-con处
+	leftGrid.hover(function(){
+		$(this).find("img").css("right","6px");
+	},function(){
+		$(this).find("img").css("right","0");
+	});
+	rightGrid.hover(function(){
+		$(this).find("img").css("right","6px");
+	},function(){
+		$(this).find("img").css("right","0");
+	});
+//浏览器最左边的垂直导航条
+	$(window).scroll(function(){
+		if($(window).scrollTop()>=800)
+			rightMask.show();
+		else
+			rightMask.hide();
+	});
+	rightTab2.hover(function(){
+		rightTabBg2.css({"background":"#f7a945","opacity":"1"});
+	},function(){
+		rightTabBg2.css({"background":"#000","opacity":"0.6"});
+	});
+	rightTab3.hover(function(){
+		rightTabBg3.css({"background":"#19c8a9","opacity":"1"});
+	},function(){
+		rightTabBg3.css({"background":"#000","opacity":"0.6"});
+	});
+	rightTab4.hover(function(){
+		rightTabBg4.css({"background":"#f15453","opacity":"1"});
+	},function(){
+		rightTabBg4.css({"background":"#000","opacity":"0.6"});
+	});	
+	rightTab5.hover(function(){
+		rightTabBg5.css({"background":"#64c333","opacity":"1"});
+	},function(){
+		rightTabBg5.css({"background":"#000","opacity":"0.6"});
+	});
+	rightTab6.hover(function(){
+		rightTabBg6.css({"background":"#0aa6e8","opacity":"1"});
+	},function(){
+		rightTabBg6.css({"background":"#000","opacity":"0.6"});
+	});
+	rightTab7.hover(function(){
+		rightTabBg7.css({"background":"#ea5f8d","opacity":"1"});
+	},function(){
+		rightTabBg7.css({"background":"#000","opacity":"0.6"});
+	});
+	rightTab8.hover(function(){
+		rightTabBg8.css({"background":"#000","opacity":"1"});
+	},function(){
+		rightTabBg8.css({"background":"#000","opacity":"0.6"});
+	});
+	rightTab9.hover(function(){
+		rightTabBg9.css({"background":"#000","opacity":"1"});
+	},function(){
+		rightTabBg9.css({"background":"#000","opacity":"0.6"});
+	});
+
+//浏览器顶部的搜索框(随浏览器的下拉而显示)
+	$(window).scroll(function(){
+		if($(window).scrollTop()>=800)
+		attachedSearch.show();
+	else
+		attachedSearch.hide();
+	});
+
+//浏览器最右边的垂直导航条
+	leftTab.on("mouseenter",function(){
+		var me=$(this),
+		index=me.index();
+		leftTab.eq(index).find("span").show();
+	});
+	leftTab.on("mouseleave",function(){
+		var me=$(this),
+		index=me.index();
+		leftTab.eq(index).find("span").hide();
+	});
+
+//轮播图
+    nav.on("mouseenter",function(){
+    	var me=$(this),
+    	index=me.index();
+    	iNow=index;
+		ani();
+    })
+    autoPlay();
+    function autoPlay(){
+    	timer=setInterval(function(){
+    		if(iNow<nav.length-1)
+    			iNow++;
+    		else
+    			iNow=0;
+    		    ani();
+    	},2000)
+    }
+    function ani(){
+    		slidepannel.eq(iNow).css({"display":"block"}).siblings().css("display","none");
+    		nav.eq(iNow).addClass("active").siblings().removeClass("active");
+    }
+    slideShow.hover(function(){
+    	clearInterval(timer);
+    },function(){
+    	autoPlay();
+    });
+    //topNav的下拉列表
+    mytaobao.hover(function(){
+    	$(this).css({"background":"#fff"});
+    	$(this).find(".menu-hd").css({"color":"red","text-decoration":"underline"});
+    	secondMenu1.css("display","block");
+    	$(this).find(".arr").css({"border-width":"3px","border-color":"transparent transparent #bbb transparent","border-style":"dashed dashed solid","top":"12px"});
+    },function(){
+    	$(this).css({"background":"#f81231"});
+    	$(this).find(".menu-hd").css({"color":"#fff","text-decoration":"none"});
+    	secondMenu1.css("display","none");
+    	$(this).find(".arr").css({"border-width":"3px","border-color":"#bbb transparent transparent","border-style":"solid dashed dashed","top":"15px"});
+    });
+    myfavorite.hover(function(){
+    	$(this).css({"background":"#fff"});
+    	$(this).find(".menu-hd").css({"color":"red","text-decoration":"underline"});
+    	secondMenu2.css("display","block");
+    	$(this).find(".arr").css({"border-width":"0 3px 3px","border-color":"transparent transparent #bbb","border-style":"solid"});
+    },function(){
+    	$(this).css({"background":"#f81231"});
+    	$(this).find(".menu-hd").css({"color":"#fff","text-decoration":"none"});
+    	secondMenu2.css("display","none");
+    	$(this).find(".arr").css({"border-width":"3px 3px 0","border-color":"#bbb transparent","border-style":"solid"});
+    });
+     seller.hover(function(){
+    	$(this).css({"background":"#fff"});
+    	$(this).find(".menu-hd").css({"color":"red","text-decoration":"underline"});
+    	secondMenu4.css("display","block");
+    	$(this).find(".arr").css({"border-width":"0 3px 3px","border-color":"transparent transparent #bbb","border-style":"solid"});
+    },function(){
+    	$(this).css({"background":"#f81231"});
+    	$(this).find(".menu-hd").css({"color":"#fff","text-decoration":"none"});
+    	secondMenu4.css("display","none");
+    	$(this).find(".arr").css({"border-width":"3px 3px 0","border-color":"#bbb transparent","border-style":"solid"});
+    });
+    mybrand.hover(function(){
+     	$(this).css("color","#ffe013").find("a").css("color","#ffe013");
+     },function(){
+     	$(this).css("color","#fff").find("a").css("color","#fff");
+     });
+    cart.hover(function(){
+     	$(this).css("color","#ffe013").find("a").css("color","#ffe013");
+     },function(){
+     	$(this).css("color","#fff").find("a").css("color","#fff");
+     });
+    home.hover(function(){
+     	$(this).css("color","#ffe013").find("a").css("color","#ffe013");
+     },function(){
+     	$(this).css("color","#fff").find("a").css("color","#fff");
+     });
+    bussiness.hover(function(){
+     	$(this).find("a").css("color","#ffe013");
+     },function(){
+     	$(this).find("a").css("color","#fff");
+     });
+    mobile.hover(function(){
+     	$(this).css("color","#ffe013").find("a").css("color","#ffe013");
+     	secondMenu3.css("display","block");
+     },function(){
+     	$(this).css("color","#fff").find("a").css("color","#fff");
+     	secondMenu3.css("display","none");
+     });
+    snNav.hover(function(){
+    	$(this).css({"background":"#fff"});
+    	secondMenu5.css("display","block");
+    	$(this).find(".arr").css({"border-width":"0 3px 3px","border-color":"transparent transparent #bbb","border-style":"solid"});
+    },function(){
+    	$(this).css({"background":"#f81231"});
+    	secondMenu5.css("display","none");
+    	$(this).find(".arr").css({"border-width":"3px 3px 0","border-color":"#bbb transparent","border-style":"solid"});
+    });	
+    secondMenu5.hover(function(){
+    	$(this).css("display","block");
+    	snNav.css({"background":"#fff"});
+    },function(){
+    	snNav.css({"background":"#f81231"});
+    	$(this).css("display","none");
+    });
+    secondMenu4.find("li").on("mouseenter",function(){
+    	$(this).find("a").css("color","#ffe013");
+    });
+    secondMenu4.find("li").on("mouseleave",function(){
+    	$(this).find("a").css("color","#666");
+    });
+    secondMenu4.find("li a").on("mouseenter",function(){
+    	$(this).css("text-decoration","underline");
+    });
+    secondMenu4.find("li a").on("mouseleave",function(){
+    	$(this).css("text-decoration","none");
+    });
+    secondMenu5.find("a").hover(function(){
+    	$(this).css({"color":"#ffe013","text-decoration":"underline"});
+    },function(){
+    	$(this).css({"color":"#666","text-decoration":"none"});
+    });
+    //商品分类与双11狂欢的下拉表
+    party.on("mouseenter",function(){
+    	secondMenu7.css("display","block");
+    	secondMenu6.css("display","none");
+    	goodsClass.css({"color":"#fff","background":"#dd2727"});
+    	$(this).css({"color":"#fff","background":"url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAAA1BMVEUYFRXvJ83tAAAAAXRSTlPM0jRW/QAAAApJREFUCNdjAAIAAAQAASDSLW8AAAAASUVORK5CYII=)"});
+    });
+    goodsClass.on("mouseenter",function(){
+    	secondMenu7.css("display","none");
+    	secondMenu6.css("display","block");
+    	party.css({"color":"#ffe013","background":"#dd2727"});
+    	$(this).css({"color":"red","background":"#fff"});
+    });
+    secondItem.on("mouseenter",function(){
+    	var me=$(this),
+    	index=me.index();
+    	iNow=index;
+    	secondItem.eq(iNow).css("background","#fff");
+    	secondItem.eq(iNow).find(".third-menu").css("display","block");
+    });
+    secondItem.on("mouseleave",function(){
+    	var me=$(this),
+    	index=me.index();
+    	iNow=index;
+    	secondItem.eq(iNow).css("background","rgba(238,238,238,0.95)");
+    	secondItem.eq(iNow).find(".third-menu").css("display","none");
+    });
+    //brand-info中的brand-mask的显示与隐藏
+    brandItem.hover(function(){
+    	var me=$(this),
+    	index=me.index();
+    	iNow2=index;
+    	brandItem.eq(iNow2).find(".brand-mask").show();
+    },function(){
+    	var me=$(this),
+    	index=me.index();
+    	iNow2=index;
+    	brandItem.eq(iNow2).find(".brand-mask").hide();
+    });
+});

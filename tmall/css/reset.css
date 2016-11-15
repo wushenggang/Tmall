@@ -1,0 +1,24 @@
+*{
+	margin:0;
+	padding:0;
+}
+ol,ul,li{
+	list-style:none;
+}
+a{
+	text-decoration:none;
+  	
+}
+img{
+	border:none;
+}
+.clearfloat:after{
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+	height:0;
+}
+.clear{
+	clear:both;
+}
